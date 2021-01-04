@@ -1,6 +1,15 @@
 #!/bin/bash
 
-. config.sh
+if [ -f config.sh ]; then
+    . config.sh
+    mount="${PWD}"
+elif [ -f ../config.sh ]; then
+    . ../config.sh
+    mount="${PWD}/.."
+else
+    echo >&2 "config.sh not found"
+    exit 1
+fi
 
 build_play_image() {
     set -e
@@ -13,7 +22,7 @@ FROM ${IMAGE}
 
 USER root
 
-RUN apt install --no-install-recommends -yq python3-pip && \
+RUN apt install --no-install-recommends -yq python3-pip vim && \
     pip3 install colorama prompt_toolkit pygments
 
 USER frida
@@ -27,9 +36,12 @@ EOF
     set +e
 }
 
-docker inspect "${PLAY_IMAGE}" || build_play_image
+docker inspect "${PLAY_IMAGE}" >/dev/null 2>&1 || build_play_image
 docker run \
+    --privileged \
+    --user root \
+    --name "${PLAY_NAME}" \
     --entrypoint /bin/bash \
-    -v "${PWD}":/frida \
+    -v "${mount}":/frida \
     --workdir /frida/frida \
     -it --rm "${PLAY_IMAGE}"
