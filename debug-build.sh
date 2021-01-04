@@ -3,6 +3,7 @@
 . config.sh
 
 docker run \
+    --name "${NAME}" \
     --workdir /frida/frida \
     --entrypoint /bin/bash \
-    -t --rm -v "$(pwd)":/frida "${IMAGE}" -c "make $@"
+    -it --rm -v "$(pwd)":/frida "${IMAGE}"

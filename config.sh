@@ -1,3 +1,9 @@
 BASE=frida_build
 VERSION=0.0.1
 IMAGE="${BASE}:${VERSION}"
+NAME="${BASE}_container"
+
+PLAY_BASE=frida_play
+PLAY_VERSION=0.0.1
+PLAY_IMAGE="${PLAY_BASE}:${PLAY_VERSION}"
+PLAY_NAME="${PLAY_BASE}_container"
