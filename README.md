@@ -1,7 +1,7 @@
 ## Using Docker to Play with Frida
 
 1. `./init.sh`
-2. `./make.sh tools-linux-x86`
+2. `./make.sh tools-linux-x86_64`
 3. `./run.sh` to play with Frida (or use the following alias method)
 
 ## Using Host System to Play with Frida
