@@ -1,0 +1,3 @@
+BASE=frida_build
+VERSION=0.0.1
+IMAGE="${BASE}:${VERSION}"

@@ -1,3 +1,10 @@
+## Using Docker to Play with Frida
+
+1. `./init.sh`
+2. `./make.sh tools-linux-x86`
+3. `./run.sh` to play with Frida (or use the following alias method)
+
+## Using Host System to Play with Frida
 
 Meant as a helper for building/rebuilding Frida. Here's a couple helpers to put into your `.bashrc` file:
 
